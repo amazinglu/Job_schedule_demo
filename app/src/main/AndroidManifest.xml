@@ -21,12 +21,6 @@
             android:label="Word service"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
-        <!--<receiver android:name=".MyBroadCastReveiver">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.example.amazinglu.job_scheduler_demo_my_send"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
     </application>
 
 </manifest>

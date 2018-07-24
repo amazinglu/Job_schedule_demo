@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String ACTION_MY_SEND = "com.example.amazinglu.job_scheduler_demo_my_send";
 
-    private MyBroadCastReceiver myBroadCastReceiver = null;
+    private MyBroadCastReceiver myBroadCastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button sendBroadCast = findViewById(R.id.send_broad_cast);
-        myBroadCastReceiver = new MyBroadCastReceiver();
 
-        registerLocalBroadCast();
+        /**
+         * LocalBroadmanager can not send intent to global broadcast receiver
+         * => can not use manifest registered receiver with Local BroadCast Manager
+         * */
+        myBroadCastReceiver = new MyBroadCastReceiver();
+        registerLocalBroadCastRecevier();
 
         sendBroadCast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(MainActivity.this).unregisterReceiver(myBroadCastReceiver);
     }
 
-    private void registerLocalBroadCast() {
+    private void registerLocalBroadCastRecevier() {
         IntentFilter intentFilter = new IntentFilter(ACTION_MY_SEND);
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(myBroadCastReceiver, intentFilter);
+        LocalBroadcastManager.getInstance(MainActivity.this).
+                registerReceiver(myBroadCastReceiver, intentFilter);
     }
 }
