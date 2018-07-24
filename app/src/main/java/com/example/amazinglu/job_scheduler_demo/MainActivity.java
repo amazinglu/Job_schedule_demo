@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * use Job scheduler and Local BroadCast Manager
+ * http://www.vogella.com/tutorials/AndroidTaskScheduling/article.html
+ * */
 public class MainActivity extends AppCompatActivity {
 
     public static final String ACTION_MY_SEND = "com.example.amazinglu.job_scheduler_demo_my_send";
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * LocalBroadmanager can not send intent to global broadcast receiver
          * => can not use manifest registered receiver with Local BroadCast Manager
+         * https://stackoverflow.com/questions/34994067/can-a-localbroadcastmanager-send-intent-to-global-broadcastreceivers-in-the-same
          * */
         myBroadCastReceiver = new MyBroadCastReceiver();
         registerLocalBroadCastRecevier();
